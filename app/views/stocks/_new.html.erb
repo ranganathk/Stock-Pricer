@@ -1,0 +1,13 @@
+<div class="col-md-4">
+  <%= simple_form_for @stock, remote: true do |f| %>
+    <%= f.input :name, label:"Stock Name", input_html: { class: 'pull-right' } %>
+    <%= f.input :price, label:"Price", input_html: { class: 'pull-right' } %>
+    <%= f.input :strikePrice, label:"Strike Price", input_html: { class: 'pull-right' } %>
+    <%= f.input :maturity, label:"Maturity", input_html: { class: 'pull-right' } %>
+    <%= f.input :interestRate, label:"Interest Rate", input_html: { class: 'pull-right' } %>
+    <%= f.input :colitility, label:"Volatility", input_html: { class: 'pull-right' } %>
+    <%= f.input :call_option, label:"Call Option" %>
+    <%= f.input :put_option, label:"Put Option" %>
+    <%= f.button :submit, "Calculate" %>
+  <% end %>
+</div>
