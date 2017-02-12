@@ -1,5 +1,5 @@
 <div class="col-md-4">
-  <%= simple_form_for @stock, remote: true do |f| %>
+  <%= simple_form_for @stock, :url => "/", remote: true do |f| %>
     <%= f.input :name, label:"Stock Name", input_html: { class: 'pull-right' } %>
     <%= f.input :price, label:"Price", input_html: { class: 'pull-right' } %>
     <%= f.input :strikePrice, label:"Strike Price", input_html: { class: 'pull-right' } %>

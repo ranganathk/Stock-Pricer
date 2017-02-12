@@ -6,14 +6,10 @@ class StocksController < ApplicationController
 
   def create
     @stock = Stock.new(stock_params)
-    @result = BlackScholes(@stock.put_option, @stock.call_option, @stock.price, @stock.strikePrice, @stock.maturity, @stock.interestRate, @stock.colitility)
+    @result = BlackScholes(@stock.call_option, @stock.put_option, @stock.price, @stock.strikePrice, @stock.maturity, @stock.interestRate, @stock.colitility)
     respond_to do |format|
-      format.html # actually means: if the client ask for js -> return file.js
-      format.js
+      format.js {render 'create.js.erb'}
     end
-  end
-
-  def show
   end
 
   private
@@ -37,14 +33,9 @@ class StocksController < ApplicationController
     d2 = d1-v*Math.sqrt(t)
     call_val = s*cnd(d1)-x*Math.exp(-r*t)*cnd(d2)
     put_val = x*Math.exp(-r*t)*cnd(-d2)-s*cnd(-d1)
-    if call_option && put_option
-      return "The call value is: #{call_val}, and the put value is :#{put_val}"
-    elsif put_option
-      return "The put value is: #{put_val}"
-    elsif call_option
-      return "The call value is: #{call_val}"
-    else
-      return
-    end
+    arr = []
+    arr[0] = call_val
+    arr[1] = put_val
+    return arr
   end
 end
